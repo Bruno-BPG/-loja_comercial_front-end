@@ -19,20 +19,33 @@ import React, {
     if (!pokemon) {
       return null;
     }
+
+    console.log(pokemon.stats[0])
   
     return (
-      <div className="PokemonView">
-        <h1>{pokemon.name}</h1>
-        <img
-          src={pokemon.sprites.front_default}
-          alt={pokemon.name}
-        />
-        Abilities
-        <ul className="PokemonView__abilities">
-          {pokemon.abilities.map((item, index) => (
-            <li key={index}>{item.ability.name}</li>
-          ))}
-        </ul>
+      <div className="conteinerCardGrande">
+        <h1 className='ajustarCentro'>{pokemon.name}</h1>
+        <div className='ajustarCentro'>
+          <img className="imgGrandePokemon" alt={pokemon.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${params.id}.svg`}></img>
+        </div>
+        
+        <div className='tipoDosPokemons'>
+          <p className='tipoGrass'>{pokemon.types[0].type.name}</p>
+          <p className='tipoGrass'>{pokemon.types[1]?.type.name}</p>
+        </div>
+
+        <h1 className='ajustarCentro'>{"status"}</h1>
+        <div className='conteinerStatus'>
+        {
+          pokemon.stats.map((iten,index)=>(
+            <div  key={index}>
+              <div>{iten.stat.name}</div>
+              <div>{iten.base_stat}</div>
+            </div>
+          ))
+        }
+        </div>
+
       </div>
     );
   };
